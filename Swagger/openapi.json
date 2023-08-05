@@ -1,0 +1,255 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Task apis",
+    "description": "Create, update and more actions using apis",
+    "contact": {
+      "name": "Jeaustin Rodriguez",
+      "url": "http://localhost:8080"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Get the welcome message",
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Get starting using our system\""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GetTasks": {
+      "get": {
+        "description": "Get the tasks created",
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskGetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GetPercentTask/{State}": {
+      "get": {
+        "description": "Get percent of tasks with the same status",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "State",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "New"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "example": 100
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/CreateTask": {
+      "post": {
+        "description": "Create a simple task",
+        "requestBody": {
+          "required": true,
+          "description": "Create a new task and add in a list",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskPostResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/UpdateTask": {
+      "patch": {
+        "description": "Update the task",
+        "requestBody": {
+          "required": true,
+          "description": "Update the task with the same ID",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskPatch"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Task": {
+        "required": [
+          "title",
+          "description",
+          "assignTo"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Food"
+          },
+          "description": {
+            "type": "string",
+            "example": "Lunch"
+          },
+          "assignTo": {
+            "type": "string",
+            "example": "Jeaustin RDZ"
+          }
+        }
+      },
+      "TaskGetResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "title": {
+              "type": "string",
+              "example": "Food"
+            },
+            "description": {
+              "type": "string",
+              "example": "Lunch"
+            },
+            "assignTo": {
+              "type": "string",
+              "example": "Jeaustin RDZ"
+            },
+            "creationDate": {
+              "type": "string",
+              "example": "2023-08-04"
+            },
+            "state": {
+              "type": "string",
+              "example": "New"
+            }
+          }
+        }
+      },
+      "TaskPostResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Food"
+          },
+          "description": {
+            "type": "string",
+            "example": "Lunch"
+          },
+          "assignTo": {
+            "type": "string",
+            "example": "Jeaustin RDZ"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2023-08-04"
+          },
+          "state": {
+            "type": "string",
+            "example": "New"
+          }
+        }
+      },
+      "TaskPatch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Update a task"
+          },
+          "description": {
+            "type": "string",
+            "example": "Update a task for test"
+          },
+          "assignTo": {
+            "type": "string",
+            "example": "Jeaustin"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2023-08-04"
+          },
+          "state": {
+            "type": "string",
+            "example": "Ready"
+          }
+        }
+      }
+    }
+  }
+}
