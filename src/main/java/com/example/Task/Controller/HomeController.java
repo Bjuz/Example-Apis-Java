@@ -1,5 +1,7 @@
-package com.example.Task;
+package com.example.Task.Controller;
 
+import com.example.Task.Task;
+import com.example.Task.TaskList;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
