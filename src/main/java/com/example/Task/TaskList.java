@@ -45,6 +45,6 @@ public class TaskList {
                 return task;
             }
         }
-        return new Task();
+        return null;
     }
 }

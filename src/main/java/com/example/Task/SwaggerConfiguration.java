@@ -32,8 +32,8 @@ public class SwaggerConfiguration {
                 "Task Project",
                 "Rest API about create tasks",
                 "Version: 1.0.0",
-                "https://www.linkedin.com/in/jeaustin-rodr%C3%ADguez-rodriguez",
+                "",
                 new Contact("Jeaustin Rodriguez", "https://www.linkedin.com/in/jeaustin-rodr%C3%ADguez-rodriguez", "jeaustin.rdz@gmail.com"),
-                "Apache-2.0", "http://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
+                "", "", Collections.emptyList());
     }
 }
