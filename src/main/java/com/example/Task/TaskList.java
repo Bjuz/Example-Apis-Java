@@ -16,8 +16,16 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    public Task addTask(Task newTask){
+        tasks.add(newTask);
+        return newTask;
+    }
+
 
     public int countTasksState(String state) {
+        if(tasks.isEmpty()){
+            return 0;
+        }
         int count = 0;
         for (Task task : tasks) {
             if (task.getState().equals(state)) {
@@ -37,6 +45,6 @@ public class TaskList {
                 return task;
             }
         }
-        return null;
+        return new Task();
     }
 }

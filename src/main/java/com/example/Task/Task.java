@@ -17,6 +17,15 @@ public class Task {
         this.state = state;
     }
 
+    public Task() {
+        this.id = 1;
+        this.title = "1";
+        this.description = "1";
+        this.assignTo = "1";
+        this.creationDate = "1";
+        this.state = "1";
+    }
+
     public long getId() {
         return id;
     }

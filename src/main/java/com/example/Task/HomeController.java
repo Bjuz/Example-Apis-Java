@@ -1,44 +1,32 @@
 package com.example.Task;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.Task.TaskList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-
-
-@RestController //ready for use by Spring MVC to handle web requests
+@RestController
 @CrossOrigin(origins = "http://127.0.0.1:5500/")
 public class HomeController {
 	private final AtomicLong counter = new AtomicLong();
-
 	private final TaskList taskList = new TaskList();
-	LocalDate currentDate = LocalDate.now();
 
-	// Define a date formatter
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-	// Format the LocalDate as a String
-	String formattedDate = currentDate.format(formatter);
-
-	@GetMapping("/")//redirect in index
+	@GetMapping("/")
 	public String index() {
-			return "Get starting using our system";
+		return "Get starting using our system";
 	}
 
 	@GetMapping("/GetTasks")
-	public List<Task> greeting() {
+	public List<Task> getTasks() {
 		return taskList.getTasks();
 	}
 
 	@GetMapping("/GetPercentTask/{State}")
-	public int PercentTask(@PathVariable String State) {
-		return taskList.countTasksState(State) ;
+	public int getPercentTask(@PathVariable String State) {
+		return taskList.countTasksState(State);
 	}
 
 	@PostMapping("/CreateTask")
@@ -53,13 +41,13 @@ public class HomeController {
 				"New"
 		);
 
-		taskList.getTasks().add(newTask); // Add the task in TaskList
+		taskList.addTask(newTask);
 
 		return newTask;
 	}
-	@PatchMapping("/UpdateTask")
-	public Task updateTaskState( @RequestBody Task task) {
-		return taskList.UpdateTask(task); // Implement this method to find the task by ID
-	}
 
+	@PatchMapping("/UpdateTask")
+	public Task updateTaskState(@RequestBody Task task) {
+		return taskList.UpdateTask(task);
+	}
 }
