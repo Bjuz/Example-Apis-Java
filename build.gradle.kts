@@ -36,6 +36,6 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation(kotlin("stdlib-jdk8", "1.5.30"))
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.3")
 }
 

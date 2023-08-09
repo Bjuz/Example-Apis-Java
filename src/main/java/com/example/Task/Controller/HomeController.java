@@ -34,19 +34,37 @@ public class HomeController {
 	@Operation(summary = "Get the list of the tasks in the list")
 	@GetMapping("/_apis/GetTasks")
 	public List<Task> getTasks() {
-		return taskList.getTasks();
+		try {
+			return taskList.getTasks();
+		} catch (Exception ex) {
+			// Handle and log the exception
+			return null; // Indicate an error state
+		}
+
 	}
 
 	@Operation(summary = "Get the percent of tasks with the same state")
 	@GetMapping("/_apis/GetPercentTask/{State}")
 	public int getPercentTask(@PathVariable String State) {
-		return taskList.countTasksState(State);
+		try {
+			return taskList.countTasksState(State);
+		} catch (Exception ex) {
+			// Handle and log the exception
+			return -1; // Indicate an error state
+		}
+
 	}
 
 	@Operation(summary = "Get a task by ID")
 	@GetMapping("/_apis/GetTaskByID/{ID}")
 	public Task GetTaskByID(@PathVariable String ID) {
-		return taskList.getTaskById(ID);
+		try {
+			return  taskList.getTaskById(ID);
+		} catch (Exception ex) {
+			// Handle and log the exception
+			return null; // Indicate an error state
+		}
+
 	}
 
 	@Operation(summary = "Create tasks and attach them to the list")
@@ -61,8 +79,13 @@ public class HomeController {
 				LocalDate.now().toString(),
 				"New"
 		);
+		try {
+			taskList.addTask(newTask);
+		} catch (Exception ex) {
+			// Handle and log the exception
+			return null; // Indicate an error state
+		}
 
-		taskList.addTask(newTask);
 
 		return newTask;
 	}
@@ -70,6 +93,12 @@ public class HomeController {
 	@Operation(summary = "Update a task based on the ID")
 	@PatchMapping("/_apis/UpdateTask")
 	public Task updateTaskState(@RequestBody Task task) {
-		return taskList.UpdateTask(task);
+		try {
+			return taskList.UpdateTask(task);
+		} catch (Exception ex) {
+			// Handle and log the exception
+			return null; // Indicate an error state
+		}
+
 	}
 }

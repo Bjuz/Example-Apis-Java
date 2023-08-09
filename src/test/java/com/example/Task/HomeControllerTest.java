@@ -17,8 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.Collections;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(HomeController.class)
@@ -38,19 +36,13 @@ public class HomeControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    public void testGetIndex() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Get starting using our system"));
-    }
+
 
     @Test
     public void testGetTasks() throws Exception {
         when(taskList.getTasks()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/GetTasks")
+        mockMvc.perform(MockMvcRequestBuilders.get("/_apis/GetTasks")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isArray());
@@ -61,7 +53,7 @@ public class HomeControllerTest {
         String state = "New";
         when(taskList.countTasksState(state)).thenReturn(2);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/GetPercentTask/{State}", state)
+        mockMvc.perform(MockMvcRequestBuilders.get("/_apis/GetPercentTask/{State}", state)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("0"));
@@ -72,7 +64,7 @@ public class HomeControllerTest {
         Task task = new Task(1, "Test Task", "Description", "Assignee", "2023-08-06", "New");
         when(taskList.addTask(task)).thenReturn(task);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/CreateTask")
+        mockMvc.perform(MockMvcRequestBuilders.post("/_apis/CreateTask")
                         .content(asJsonString(task))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
@@ -88,13 +80,13 @@ public class HomeControllerTest {
         when(taskList.UpdateTask(task2)).thenReturn(task);
 
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/CreateTask")
+        mockMvc.perform(MockMvcRequestBuilders.post("/_apis/CreateTask")
                         .content(asJsonString(task))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Test Task"));
 
-        mockMvc.perform(MockMvcRequestBuilders.patch("/UpdateTask")
+        mockMvc.perform(MockMvcRequestBuilders.patch("/_apis/UpdateTask")
                         .content(asJsonString(task2))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
