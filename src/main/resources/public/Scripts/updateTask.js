@@ -34,13 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (response.ok) {
                 console.log('Task updated successfully');
+                window.alert('Task updated successfully');
             }
             else {
-                console.error('Error updating task:', response.status);
+                console.error('Error creating task:', response.status);
+                window.alert('Error creating task:' + '\n' + response.status);
             }
         }
         catch (error) {
             console.error('Error updating task:', error);
+            window.alert('Error updating task' + '\n' + error);
         }
     }));
 });

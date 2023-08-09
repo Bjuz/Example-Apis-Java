@@ -33,13 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const responseData = yield response.json();
                 console.log('Task created:', responseData);
+                window.alert('Task created');
             }
             else {
                 console.error('Error creating task:', response.status);
+                window.alert('Error creating task:' + '\n' + response.status);
             }
         }
         catch (error) {
             console.error('Error creating task:', error);
+            window.alert('Error creating task' + '\n' + error);
         }
     }));
 });

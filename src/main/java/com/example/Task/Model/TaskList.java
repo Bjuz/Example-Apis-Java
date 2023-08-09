@@ -2,7 +2,11 @@ package com.example.Task.Model;
 import com.example.Task.Model.Task;
 
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Map;
+
+
 public class TaskList {
     private List<Task> tasks;
 
@@ -59,4 +63,17 @@ public class TaskList {
         }
         return null;
     }
+
+    public List<String> getListStates(){
+        List<String> StatesList = new ArrayList<>();
+        for (Task task : tasks) {
+            if (!StatesList.contains(task.getState())) {
+                StatesList.add(task.getState());
+            }
+        }
+        return  StatesList;
+    }
+
+
+
 }

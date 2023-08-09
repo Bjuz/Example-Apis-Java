@@ -2,6 +2,7 @@ package com.example.Task.Controller;
 
 import com.example.Task.Model.Task;
 import com.example.Task.Model.TaskList;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,21 +16,22 @@ import java.util.concurrent.atomic.AtomicLong;
 public class HomeController {
 	private final AtomicLong counter = new AtomicLong();
 	private final TaskList taskList = new TaskList();
-
+	@Hidden
 	@GetMapping("/")
 	public ModelAndView index() {
 		return new ModelAndView("redirect:/index.html");
 	}
-
+	@Hidden
 	@GetMapping("/viewTasks")
 	public ModelAndView viewTasks() {
 		return new ModelAndView("redirect:/viewTasks.html");
 	}
-
+	@Hidden
 	@GetMapping("/updateTask")
 	public ModelAndView updateTask() {
 		return new ModelAndView("redirect:/updateTask.html");
 	}
+
 
 	@Operation(summary = "Get the list of the tasks in the list")
 	@GetMapping("/_apis/GetTasks")
@@ -42,6 +44,8 @@ public class HomeController {
 		}
 
 	}
+
+
 
 	@Operation(summary = "Get the percent of tasks with the same state")
 	@GetMapping("/_apis/GetPercentTask/{State}")
@@ -101,4 +105,6 @@ public class HomeController {
 		}
 
 	}
+
+
 }

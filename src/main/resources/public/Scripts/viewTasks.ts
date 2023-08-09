@@ -6,18 +6,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (response.ok) {
             const tasks = await response.json();
 
-            tasks.forEach((task: any) => {
-                const taskCard = document.createElement('div');
 
+            tasks.forEach((task: any) => {
+                console.log(task)
+                const taskCard = document.createElement('div');
+                taskCard.classList.add('taskCard');
 
                 taskCard.innerHTML = `
                     <h3>${task.id}: ${task.title}</h3>
                     <p>Description: <span>${task.description}</span></p>
-                    <p>Assigned To: <span>${task.assignTo}</span></p>
+                    <p>Assign to: <span>${task.assignTo}</span></p>
                     <p>Creation Date: <span>${task.creationDate}</span></p>
-                    <p>State: <span>${task.state}</span></p>
+                    <p>state: <span>${task.state}</span></p>
                 `;
-                taskCard.classList.add('taskCard'); // Apply the CSS class for styling
 
                 taskListElement?.appendChild(taskCard);
             });
