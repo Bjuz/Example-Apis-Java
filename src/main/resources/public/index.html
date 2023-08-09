@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do Task</title>
+    <link rel="stylesheet" href="CSS/Home.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/index.html">Create Task</a></li>
+        <li><a href="/updateTask">Update Task</a></li>
+        <li><a href="/viewTasks">View Task</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+    </ul>
+</nav>
+
+<div>
+    <form id="taskForm">
+        <input type="text" id="id" placeholder="Id">
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="description" placeholder="Description">
+        <input type="text" id="assignTo" placeholder="Assign To">
+        <button type="button" id="submitBtn">Create Task</button>
+    </form>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="Scripts/script.js"></script>
+</html>

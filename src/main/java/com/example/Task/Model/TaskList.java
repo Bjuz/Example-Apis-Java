@@ -1,4 +1,6 @@
-package com.example.Task;
+package com.example.Task.Model;
+import com.example.Task.Model.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 public class TaskList {
@@ -42,6 +44,16 @@ public class TaskList {
                 task.setAssignTo(NewTask.getAssignTo());
                 task.setCreationDate(NewTask.getCreationDate());
                 task.setState(NewTask.getState());
+                return task;
+            }
+        }
+        return null;
+    }
+
+    public Task getTaskById(String ID) {
+        long Identify = Long.parseLong(ID);
+        for (Task task : tasks) {
+            if (task.getId() == Identify) {
                 return task;
             }
         }

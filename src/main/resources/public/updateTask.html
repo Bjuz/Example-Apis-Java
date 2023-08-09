@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task</title>
+    <link rel="stylesheet" href="CSS/Home.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/index.html">Create Task</a></li>
+        <li><a href="/updateTask">Update Task</a></li>
+        <li><a href="/viewTasks">View Task</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+    </ul>
+</nav>
+<div>
+    <h1>Update Task</h1>
+    <form id="updateTaskForm">
+        <input type="text" id="id" placeholder="Id">
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="description" placeholder="Description">
+        <input type="text" id="assignTo" placeholder="Assign To">
+        <input type="text" id="newState" placeholder="New State" required>
+        <input type="submit" value="Update Task">
+    </form>
+</div>
+<script src="Scripts/updateTask.js"></script>
+</body>
+</html>

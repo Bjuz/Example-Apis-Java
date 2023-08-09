@@ -1,11 +1,24 @@
-package com.example.Task;
+package com.example.Task.Model;
+
+import io.swagger.annotations.ApiModelProperty;
 
 public class Task {
+    @ApiModelProperty(example = "1")
     private long id;
+
+    @ApiModelProperty(example = "Sample Task")
     private String title;
+
+    @ApiModelProperty(example = "This is a sample task.")
     private String description;
+
+    @ApiModelProperty(example = "John Doe")
     private String assignTo;
+
+    @ApiModelProperty(example = "2023-08-08")
     private String creationDate;
+
+    @ApiModelProperty(example = "New")
     private String state;
 
     public Task(long id, String title, String description, String assignTo, String creationDate, String state) {
